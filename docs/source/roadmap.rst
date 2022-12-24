@@ -142,3 +142,60 @@ CONTROLLER ABSTRACT
     *  Display late loans
     *  Find book by name
     *  Find customer by name
+
+========================================================================
+
+========================================================================
+004 - IMPLEMENTATION ABSTRACT OUTLINE:
+========================================================================
+
+MODEL IMPLEMENTATION ABSTRACT
+-----------------------------
+
+*  Books
+    *  Id (PK)
+    *  Name
+    *  Author
+    *  Year Published
+    *  Type (1/2/3) (determines the maximum loan time for the book)
+        *  1 – up to 10 days
+        *  2 – up to 5 days
+        *  3 – up to 2 days
+*  Customers
+    *  Id (PK)
+    *  Name
+    *  City
+    *  Age
+*  Loans
+    *  CustID
+    *  BookID
+    *  Loandate
+    *  Returndate
+
+VIEW IMPLEMENTATION ABSTRACT
+----------------------------
+
+* Use simple menu interface.
+* 1 to 1 relation with controller.
+* No submenu's or anything fancy.
+
+CONTROLLER IMPLEMENTATION ABSTRACT
+----------------------------------
+
+* Actions:
+    *  Add a new customer
+    *  Add a new book
+    *  Loan a book
+    *  Return a book
+    *  Remove book
+    *  Remover customer
+* Information:
+    *  Display all books
+    *  Display all customers
+    *  Display all loans
+    *  Display late loans
+    *  Find book by name
+    *  Find customer by name
+
+========================================================================
+
