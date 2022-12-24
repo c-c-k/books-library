@@ -30,6 +30,15 @@ STAGE 1 - PROJECT ABSTRACT OUTLINE:
     - Controller abstract.
 * Add/update stage 2 action plan.
 
+STAGE 2 - IMPLEMENTATION ABSTRACT OUTLINE:
+------------------------------------------
+
+* Based on the original assignment and MVC abstracts write abstract implementation outline:
+    - Model abstract implementation outline.
+    - View abstract implementation outline.
+    - Controller abstract implementation outline.
+* Add/update stage 3 action plan.
+
 ========================================================================
 
 ========================================================================
