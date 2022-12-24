@@ -149,6 +149,16 @@ CONTROLLER ABSTRACT
 004 - IMPLEMENTATION ABSTRACT OUTLINE:
 ========================================================================
 
+PERSISTENT STORAGE
+------------------
+
+* Use simple .csv files for persistent data storage.
+    * Use the default commas (',') as separators.
+    * Escape ',' with '&COM&'.
+    * Escape '\n' with '&NL&'.
+    * Escape '\r' with '&CR&'.
+    * Escape '&' with '&AMP&'.
+
 MODEL IMPLEMENTATION ABSTRACT
 -----------------------------
 
