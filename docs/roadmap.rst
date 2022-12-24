@@ -19,12 +19,69 @@ STAGE 0 - GLOBAL NOTES:
 STAGE 1 - PROJECT ABSTRACT OUTLINE:
 -----------------------------------
 
-Preparatory steps defining the projects goals and intentions:
-    #. Copy the original project assignment file to the docs dir.
+- Copy the original project assignment file to the docs dir.
+- Copy the original project assignment into this file for easier access.
+- Based on the original assignment write MVC abstracts:
 
-    #. Based on the original assignment write MVC abstracts:
-        - Model abstract.
-        - View abstract.
-        - Controller abstract.
+    - Model abstract.
+    - View abstract.
+    - Controller abstract.
 
-    #. Add/update stage 2 action plan.
+- Add/update stage 2 action plan.
+
+========================================================================
+ORIGINAL PROJECT ASSIGNMENT
+========================================================================
+
+In this project you will implement a simple system to manage books library
+
+    1. Create 3 files representing 3 tables:
+
+        - Books
+
+            - Id (PK)
+            - Name
+            - Author
+            - Year Published
+            - Type (1/2/3)
+
+        - Customers
+
+            - Id (PK)
+            - Name
+            - City
+            - Age
+
+        - Loans
+
+            - CustID
+            - BookID
+            - Loandate
+            - Returndate
+
+    2. The book type set the maximum loan time for the book:
+
+        - 1 – up to 10 days
+        - 2 – up to 5 days
+        - 3 – up to 2 days
+
+    3. Create the DAL:
+
+        - Build a class for each entity
+        - Create a separate module for each class
+        - Build unit tests
+
+    4. Build a client application to use the DAL. Add the following operations (display a simple menu)
+
+        - Add a new customer
+        - Add a new book
+        - Loan a book
+        - Return a book
+        - Display all books
+        - Display all customers
+        - Display all loans
+        - Display late loans
+        - Find book by name
+        - Find customer by name
+        - Remove book
+        - Remover customer
