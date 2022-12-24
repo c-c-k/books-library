@@ -25,11 +25,9 @@ STAGE 1 - PROJECT ABSTRACT OUTLINE:
 * Copy the original project assignment file to the docs dir.
 * Copy the original project assignment into this file for easier access.
 * Based on the original assignment write MVC abstracts:
-
     - Model abstract.
     - View abstract.
     - Controller abstract.
-
 * Add/update stage 2 action plan.
 
 ========================================================================
@@ -96,11 +94,10 @@ MODEL ABSTRACT
     *  Name
     *  Author
     *  Year Published
-    *  Type (1/2/3)
-        * The book type set the maximum loan time for the book:
-            *  1 – up to 10 days
-            *  2 – up to 5 days
-            *  3 – up to 2 days
+    *  Type (1/2/3) (determines the maximum loan time for the book)
+        *  1 – up to 10 days
+        *  2 – up to 5 days
+        *  3 – up to 2 days
 *  Customers
     *  Id (PK)
     *  Name
