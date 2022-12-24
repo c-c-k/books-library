@@ -7,7 +7,7 @@ A vague roadmap for doing this project.
 ========================================================================
 
 ========================================================================
-ACTION PLAN
+001 - ACTION PLAN
 ========================================================================
 
 STAGE 0 - GLOBAL NOTES:
@@ -42,7 +42,7 @@ STAGE 2 - IMPLEMENTATION ABSTRACT OUTLINE:
 ========================================================================
 
 ========================================================================
-ORIGINAL PROJECT ASSIGNMENT
+002 - ORIGINAL PROJECT ASSIGNMENT
 ========================================================================
 
 In this project you will implement a simple system to manage books library
@@ -92,7 +92,7 @@ In this project you will implement a simple system to manage books library
 ========================================================================
 
 ========================================================================
-MVC ABSTRACT
+003 - MVC ABSTRACT
 ========================================================================
 
 MODEL ABSTRACT
