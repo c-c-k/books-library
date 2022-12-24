@@ -25,8 +25,8 @@ STAGE 1 - PROJECT ABSTRACT OUTLINE:
 * Copy the original project assignment file to the docs dir.
 * Copy the original project assignment into this file for easier access.
 * Based on the original assignment write MVC abstracts:
-    - Model abstract.
-    - View abstract.
+    - DAL abstract.
+    - UI abstract.
     - Controller abstract.
 * Add/update stage 2 action plan.
 
@@ -34,8 +34,8 @@ STAGE 2 - IMPLEMENTATION ABSTRACT OUTLINE:
 ------------------------------------------
 
 * Based on the original assignment and MVC abstracts write abstract implementation outline:
-    - Model abstract implementation outline.
-    - View abstract implementation outline.
+    - DAL abstract implementation outline.
+    - UI abstract implementation outline.
     - Controller abstract implementation outline.
 * Add/update stage 3 action plan.
 
@@ -95,7 +95,7 @@ In this project you will implement a simple system to manage books library
 003 - MVC ABSTRACT
 ========================================================================
 
-MODEL ABSTRACT
+DAL ABSTRACT
 -----------------------
 
 *  Books
@@ -118,7 +118,7 @@ MODEL ABSTRACT
     *  Loandate
     *  Returndate
 
-VIEW ABSTRACT
+UI ABSTRACT
 -----------------------
 
 * Use simple menu interface.
@@ -183,7 +183,7 @@ PACKAGE/DIRECTORY STRUCTURE
     * __main__.py
 
 
-MODEL IMPLEMENTATION ABSTRACT
+DAL IMPLEMENTATION ABSTRACT
 -----------------------------
 
 *  Books
@@ -206,7 +206,7 @@ MODEL IMPLEMENTATION ABSTRACT
     *  Loandate
     *  Returndate
 
-VIEW IMPLEMENTATION ABSTRACT
+UI IMPLEMENTATION ABSTRACT
 ----------------------------
 
 * Use simple menu interface.
