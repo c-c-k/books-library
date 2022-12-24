@@ -159,6 +159,30 @@ PERSISTENT STORAGE
     * Escape '\r' with '&CR&'.
     * Escape '&' with '&AMP&'.
 
+PACKAGE/DIRECTORY STRUCTURE
+---------------------------
+
+* books_library (application root directory)
+    * data
+        * books.csv
+        * customers.csv
+        * loans.csv
+    * dal
+        * base.py
+        * books.py
+        * customers.py
+        * loans.py
+    * logs
+        * [logs ...]
+    * ui
+        * messages.py
+        * menu.py
+        * cli.py
+    * controller.py
+    * log_config.py
+    * __main__.py
+
+
 MODEL IMPLEMENTATION ABSTRACT
 -----------------------------
 
