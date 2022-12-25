@@ -235,7 +235,7 @@ DAL
         * city : StrField
         * age : IntField
     *class Customers(WithNameContainer, WithRemoveContainer)
-        * _model_type = Book
+        * _model_type = Customer
 
 *  dal/loans.py
     * class Loan(Model)
