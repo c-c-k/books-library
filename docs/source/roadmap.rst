@@ -176,8 +176,44 @@ PACKAGE/DIRECTORY STRUCTURE
     * __main__.py
 
 
-DAL IMPLEMENTATION ABSTRACT
------------------------------
+DAL
+---
+
+* dal/base.py
+    * class Field
+        * basic descriptor/validator
+    * class StrField(Field)
+        * Validates that input value is a str.
+    * class IntField(Field)
+        * Validates that input value is an int.
+    * class ChoiceField(Field)
+        * Validates that input value is one of the allowed choices.
+    * class PKField(IntField)
+        * Adds a class attribute _next_id.
+        * In case a new object is initialized with an Id, checks and adjusts the classes _next_id to be no smaller than the new objects Id.
+        * In case a new object is created without an Id, add a new Id based on _next_id.
+    * class FKField(IntField)
+        * Takes as input only another object with a PKField attribute.
+    * class DateField(Field)
+        * Validates that input can be converted to a datetime.date object.
+        * String conversion format/s are hardcoded.
+    * class Model(dataclass)
+        * Place-holder parent class for the book/client/loan models in case some shared base functionality is needed later on.
+    * class Container
+        * Interacts with persistent storage container.
+            * Name of persistent storage container matches subclass name.
+        * Has _model_class attribute that subclasses must override with the appropriate model.
+        * get_all method
+            * Returns an iterator over all of the items in the container.
+        * add method
+            * Adds a new item to the container.
+    * class WithNameContainer(Container)
+        * get_by_name method
+            * Returns an iterator over all items with a name field equalling or containing the input name.
+    * class WithRemoveContainer(Container)
+        * remove method
+            * Removes an item from the container.
+
 
 *  Books
     *  Id (PK)
