@@ -215,25 +215,35 @@ DAL
             * Removes an item from the container.
 
 
-*  Books
-    *  Id (PK)
-    *  Name
-    *  Author
-    *  Year Published
-    *  Type (1/2/3) (determines the maximum loan time for the book)
-        *  1 – up to 10 days
-        *  2 – up to 5 days
-        *  3 – up to 2 days
-*  Customers
-    *  Id (PK)
-    *  Name
-    *  City
-    *  Age
+*  dal/books.py
+    * class Book(Model)
+        * id : PKField
+        * name : StrField
+        * author : StrField
+        * year_published : IntField
+        * type : ChoiceField (1, 2, 3)
+        * _loan_types: dict { 1: 10, 2: 5, 3: 2 }
+        * property loan_duration
+            * returns the maximal loan duration according to book type.
+    *class Books(WithNameContainer, WithRemoveContainer)
+        * _model_type = Book
+
+*  dal/customers.py
+    * class Customer(Model)
+        * id : PKField
+        * name : StrField
+        * city : StrField
+        * age : IntField
+    *class Customers(WithNameContainer, WithRemoveContainer)
+        * _model_type = Book
+
 *  Loans
     *  CustID
     *  BookID
     *  Loandate
     *  Returndate
+        * method get_return_date(loan_date: date) -> date
+            * returns the expected maximal return date according to the loan date and the book type.
 
 UI IMPLEMENTATION ABSTRACT
 ----------------------------
