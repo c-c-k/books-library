@@ -215,40 +215,40 @@ DAL
             * Removes an item from the container.
 
 
-*  dal/books.py
-    * class Book(Model)
-        * id : PKField
-        * name : StrField
-        * author : StrField
-        * year_published : IntField
-        * type : ChoiceField (1, 2, 3)
-        * _loan_types: dict { 1: 10, 2: 5, 3: 2 }
-        * property loan_duration
-            * returns the maximal loan duration according to book type.
-    *class Books(WithNameContainer, WithRemoveContainer)
-        * _model_type = Book
+* dal/books.py
+   * class Book(Model)
+       * id : PKField
+       * name : StrField
+       * author : StrField
+       * year_published : IntField
+       * type : ChoiceField (1, 2, 3)
+       * _loan_types: dict { 1: 10, 2: 5, 3: 2 }
+       * property loan_duration
+           * returns the maximal loan duration according to book type.
+   *class Books(WithNameContainer, WithRemoveContainer)
+       * _model_type = Book
 
-*  dal/customers.py
-    * class Customer(Model)
-        * id : PKField
-        * name : StrField
-        * city : StrField
-        * age : IntField
-    *class Customers(WithNameContainer, WithRemoveContainer)
-        * _model_type = Customer
+* dal/customers.py
+   * class Customer(Model)
+       * id : PKField
+       * name : StrField
+       * city : StrField
+       * age : IntField
+   *class Customers(WithNameContainer, WithRemoveContainer)
+       * _model_type = Customer
 
-*  dal/loans.py
-    * class Loan(Model)
-        * customer_id : FKField
-        * book_id : FKField
-        * loan_date : DateField
-        * return_date : DateField
-        * property return_date
-            * contains the expected maximal return date according to the loan date and the book type.
-    *class Loans(Container)
-        * _model_type = Loan
-        * method get_overdue
-            * returns an iterator over all overdue loans.
+* dal/loans.py
+   * class Loan(Model)
+       * customer_id : FKField
+       * book_id : FKField
+       * loan_date : DateField
+       * return_date : DateField
+       * property return_date
+           * contains the expected maximal return date according to the loan date and the book type.
+   *class Loans(Container)
+       * _model_type = Loan
+       * method get_overdue
+           * returns an iterator over all overdue loans.
 
 UI IMPLEMENTATION ABSTRACT
 ----------------------------
