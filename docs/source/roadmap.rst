@@ -237,13 +237,18 @@ DAL
     *class Customers(WithNameContainer, WithRemoveContainer)
         * _model_type = Book
 
-*  Loans
-    *  CustID
-    *  BookID
-    *  Loandate
-    *  Returndate
-        * method get_return_date(loan_date: date) -> date
-            * returns the expected maximal return date according to the loan date and the book type.
+*  dal/loans.py
+    * class Loan(Model)
+        * customer_id : FKField
+        * book_id : FKField
+        * loan_date : DateField
+        * return_date : DateField
+        * property return_date
+            * contains the expected maximal return date according to the loan date and the book type.
+    *class Loans(Container)
+        * _model_type = Loan
+        * method get_overdue
+            * returns an iterator over all overdue loans.
 
 UI IMPLEMENTATION ABSTRACT
 ----------------------------
