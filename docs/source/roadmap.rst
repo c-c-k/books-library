@@ -152,21 +152,14 @@ CONTROLLER ABSTRACT
 PERSISTENT STORAGE
 ------------------
 
-* Use simple .csv files for persistent data storage.
-    * Use the default commas (',') as separators.
-    * Escape ',' with '&COM&'.
-    * Escape '\n' with '&NL&'.
-    * Escape '\r' with '&CR&'.
-    * Escape '&' with '&AMP&'.
+* Use shelve module for persistent data storage.
 
 PACKAGE/DIRECTORY STRUCTURE
 ---------------------------
 
 * books_library (application root directory)
     * data
-        * books.csv
-        * customers.csv
-        * loans.csv
+        * (shelve shelf files ...)
     * dal
         * base.py
         * books.py
