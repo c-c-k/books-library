@@ -25,6 +25,7 @@ STAGE 0 - GLOBAL NOTES:
         * Use class composition.
         * Read on and use singleton/s.
         * Add digital/audio/softcover/hardcover to book specifications.
+    * Logging...
 
 STAGE 1 - PROJECT ABSTRACT OUTLINE:
 -----------------------------------
@@ -172,14 +173,11 @@ PACKAGE/DIRECTORY STRUCTURE
         * books.py
         * customers.py
         * loans.py
-    * logs
-        * [logs ...]
     * ui
         * messages.py
         * menu.py
         * cli.py
     * controller.py
-    * log_config.py
     * __main__.py
 
 
