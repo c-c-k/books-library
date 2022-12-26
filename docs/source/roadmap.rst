@@ -157,12 +157,12 @@ CONTROLLER ABSTRACT
 004 - IMPLEMENTATION ABSTRACT OUTLINE:
 ========================================================================
 
-PERSISTENT STORAGE
+004.1 - PERSISTENT STORAGE
 ------------------
 
 * Use shelve module for persistent data storage.
 
-PACKAGE/DIRECTORY STRUCTURE
+004.2 - PACKAGE/DIRECTORY STRUCTURE
 ---------------------------
 
 * books_library (application root directory)
@@ -181,7 +181,7 @@ PACKAGE/DIRECTORY STRUCTURE
     * __main__.py
 
 
-DAL
+004.3 - DAL
 ---
 
 * dal/base.py
@@ -255,14 +255,14 @@ DAL
        * method get_overdue
            * returns an iterator over all overdue loans.
 
-VIEW IMPLEMENTATION ABSTRACT
+004.4 - VIEW IMPLEMENTATION ABSTRACT
 ----------------------------
 
 * Use simple menu interface.
 * 1 to 1 relation with controller.
 * No submenu's or anything fancy.
 
-CONTROLLER IMPLEMENTATION ABSTRACT
+004.4 - CONTROLLER IMPLEMENTATION ABSTRACT
 ----------------------------------
 
 * Actions:
