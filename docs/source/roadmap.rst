@@ -129,9 +129,36 @@ DAL ABSTRACT
 VIEW ABSTRACT
 -----------------------
 
-* Use simple menu interface.
-* 1 to 1 relation with controller.
-* No submenu's or anything fancy.
+* Use simple cli menu interface.
+    * NOTE: input views:
+        * Present detailed and exact input format message.
+        * Cancel input and return to calling menu on '\q' input.
+        * Present information on the above (i.e. how to cancel the input and return to calling menu).
+        * In case of invalid input
+    * NOTE: both choice and input view should present an extra bad input header above the menu header in case of bad input.
+    * NOTE: all input views should contain cancellation info.
+    * main menu:
+        * header: generic choice menu header
+        * choice: customers menu
+            * header: generic choice menu header
+            * choice: Add a new customer
+                * header: detailed add a new customer input
+                * input: customer details
+                * cancellation: empty input
+                * validation:
+            * choice: Remove a customer
+                * Find customer by name
+            * choice: Display all customers
+            * choice: Find customer by name
+                * Remove a customer
+        * books menu
+            * books menu message
+            * choice: Add a new book
+            * choice: Loan a book
+            * choice: Remove a book
+            * choice: Display all books
+            * choice: Find book by name
+        
 
 CONTROLLER ABSTRACT
 -----------------------
