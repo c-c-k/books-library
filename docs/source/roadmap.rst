@@ -173,12 +173,9 @@ CONTROLLER ABSTRACT
         * books.py
         * customers.py
         * loans.py
-    * view
-        * messages.py
-        * menu.py
-        * cli.py
-    * controller.py
     * __main__.py
+    * controller.py
+    * view.py
 
 
 004.3 - DAL
