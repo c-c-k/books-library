@@ -34,7 +34,7 @@ STAGE 1 - PROJECT ABSTRACT OUTLINE:
 * Copy the original project assignment into this file for easier access.
 * Based on the original assignment write MVC abstracts:
     - DAL abstract.
-    - UI abstract.
+    - VIEW abstract.
     - Controller abstract.
 * Add/update stage 2 action plan.
 
@@ -43,7 +43,7 @@ STAGE 2 - IMPLEMENTATION ABSTRACT OUTLINE:
 
 * Based on the original assignment and MVC abstracts write abstract implementation outline:
     - DAL abstract implementation outline.
-    - UI abstract implementation outline.
+    - VIEW abstract implementation outline.
     - Controller abstract implementation outline.
 * Add/update stage 3 action plan.
 
@@ -126,7 +126,7 @@ DAL ABSTRACT
     *  Loandate
     *  Returndate
 
-UI ABSTRACT
+VIEW ABSTRACT
 -----------------------
 
 * Use simple menu interface.
@@ -173,7 +173,7 @@ PACKAGE/DIRECTORY STRUCTURE
         * books.py
         * customers.py
         * loans.py
-    * ui
+    * view
         * messages.py
         * menu.py
         * cli.py
@@ -255,7 +255,7 @@ DAL
        * method get_overdue
            * returns an iterator over all overdue loans.
 
-UI IMPLEMENTATION ABSTRACT
+VIEW IMPLEMENTATION ABSTRACT
 ----------------------------
 
 * Use simple menu interface.
