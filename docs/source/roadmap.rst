@@ -18,6 +18,13 @@ STAGE 0 - GLOBAL NOTES:
 * If a thought or an idea pertaining to another step comes up, add it to these global notes, move it to the appropriate step while introspecting the whole, and, deal with it only when dealing with the relevant step.
 * If the current step becomes impossible or too hard, reflect on previous step or steps that might be the root of the problem and start fixing things from there.
 * Don't Panic.
+* Potential TODOS:
+    * By Teacher's suggestion/instructions:
+        * Read on class factories vs composition vs inheritance.
+        * Use class factories.
+        * Use class composition.
+        * Read on and use singleton/s.
+        * Add digital/audio/softcover/hardcover to book specifications.
 
 STAGE 1 - PROJECT ABSTRACT OUTLINE:
 -----------------------------------
