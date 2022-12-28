@@ -129,12 +129,26 @@ In this project you will implement a simple system to manage books library
 003.2 - VIEW ABSTRACT
 -----------------------
 
-* Use simple cli menu interface.
-    * NOTE: input views:
+grid table:
+
++----------------------------------------------------------------------+
+| menu choice        | used to navigate the menu tree.                 |
++----------------------------------------------------------------------+
+| items choice       | used to select one of a given choice of items.  |
++----------------------------------------------------------------------+
+
+* cli menu interface.
+    * views global specifications:
         * Present detailed and exact input format message.
         * Cancel input and return to calling menu on '\q' input.
         * Present information on the above (i.e. how to cancel the input and return to calling menu).
         * In case of invalid input
+    * view types:
+        * menu choice:
+            *
+        * items choice:
+            * used to navigate the menu tree.
+        * multiline input:
     * NOTE: both choice and input view should present an extra bad input header above the menu header in case of bad input.
     * NOTE: all input views should contain cancellation info.
     * main menu:
