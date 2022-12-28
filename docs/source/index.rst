@@ -10,12 +10,13 @@ Welcome to BooksLibrary's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   roadmap
+
 
 
 Indices and tables
 ==================
 
-* `roadmap <./roadmap.html>`
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
