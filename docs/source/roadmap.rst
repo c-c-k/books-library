@@ -103,7 +103,7 @@ In this project you will implement a simple system to manage books library
 003 - MVC ABSTRACT
 ========================================================================
 
-DAL ABSTRACT
+003.1 - DAL ABSTRACT
 -----------------------
 
 *  Books
@@ -126,7 +126,7 @@ DAL ABSTRACT
     *  Loandate
     *  Returndate
 
-VIEW ABSTRACT
+003.2 - VIEW ABSTRACT
 -----------------------
 
 * Use simple cli menu interface.
@@ -160,7 +160,7 @@ VIEW ABSTRACT
             * choice: Find book by name
         
 
-CONTROLLER ABSTRACT
+003.3 - CONTROLLER ABSTRACT
 -----------------------
 
 * Actions:
