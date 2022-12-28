@@ -175,7 +175,7 @@ grid table:
         
 
 003.3 - CONTROLLER ABSTRACT
------------------------
+---------------------------------
 
 * Actions:
     *  Add a new customer
@@ -199,12 +199,12 @@ grid table:
 ========================================================================
 
 004.1 - PERSISTENT STORAGE
-------------------
+----------------------------
 
 * Use shelve module for persistent data storage.
 
 004.2 - PACKAGE/DIRECTORY STRUCTURE
----------------------------
+-------------------------------------
 
 * books_library (application root directory)
     * data
@@ -220,7 +220,7 @@ grid table:
 
 
 004.3 - DAL
----
+-------------
 
 * dal/base.py
     * class Field
@@ -268,7 +268,7 @@ grid table:
        * _loan_types: dict { 1: 10, 2: 5, 3: 2 }
        * property loan_duration
            * returns the maximal loan duration according to book type.
-   *class Books(WithNameContainer, WithRemoveContainer)
+   * class Books(WithNameContainer, WithRemoveContainer)
        * _model_type = Book
 
 * dal/customers.py
@@ -277,7 +277,7 @@ grid table:
        * name : StrField
        * city : StrField
        * age : IntField
-   *class Customers(WithNameContainer, WithRemoveContainer)
+   * class Customers(WithNameContainer, WithRemoveContainer)
        * _model_type = Customer
 
 * dal/loans.py
@@ -288,20 +288,20 @@ grid table:
        * return_date : DateField
        * property return_date
            * contains the expected maximal return date according to the loan date and the book type.
-   *class Loans(Container)
+   * class Loans(Container)
        * _model_type = Loan
        * method get_overdue
            * returns an iterator over all overdue loans.
 
 004.4 - VIEW IMPLEMENTATION ABSTRACT
-----------------------------
+--------------------------------------
 
 * Use simple menu interface.
 * 1 to 1 relation with controller.
 * No submenu's or anything fancy.
 
 004.4 - CONTROLLER IMPLEMENTATION ABSTRACT
-----------------------------------
+--------------------------------------------
 
 * Actions:
     *  Add a new customer
