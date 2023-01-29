@@ -10,10 +10,11 @@ v0.1.0-1 restructure docs
 v0.1.0-2 create django skeleton
 -------------------------------
 
-* Create project.
+* Created project.
 * Set shared templates dir.
-* Create container html template.
-* Create main app.
-* Create index html page.
-* Creade index view.
-* Url map index view.
+* Created container html template.
+* Created main app.
+* Created index html page.
+* Created index view.
+* Created url mapping for main index view.
+
