@@ -1,5 +1,7 @@
 ### Private modifications
 
+# ignore development database
+*.sqlite3
 
 #
 # Created by .ignore support plugin (hsz.mobi)
