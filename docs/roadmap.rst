@@ -18,3 +18,7 @@ v0.1.0-2 create django skeleton
 * Created index view.
 * Created url mapping for main index view.
 
+v0.1.0-3 Switch to following MDN "Local Library" Django tutorial
+----------------------------------------------------------------
+
+* Add note about the MDN tutorial to project README.md and to docs/index.rst .
