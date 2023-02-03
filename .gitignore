@@ -1,6 +1,9 @@
 ### Private modifications
 
-# ignore development database
+# Django secret key file
+.secret
+
+# Development database
 *.sqlite3
 
 #
