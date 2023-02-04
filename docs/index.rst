@@ -17,6 +17,7 @@ The project's goal is to build a simple and minimalistic local book library mana
    :caption: Contents:
 
    roadmap
+   data_model
    ravings
 
 

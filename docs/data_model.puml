@@ -1,0 +1,53 @@
+@startuml
+!theme crt-green
+
+class Book {
++title : String
++author : Author[1]
++summary : String
++ISBN : String
++genre : Genre[1..*]
++language : Language[1]
+--
++__str__ : String
+}
+
+class Author {
++name : String
++date_of_birth : DateField
++date_of_death : DateField
++books : Book[1..*]
+--
++__str__ : String
+}
+
+class Genre {
++name : String
+--
++__str__ : String
+}
+
+class Language {
++name : String
+--
++__str__ : String
+}
+
+class BookInstance {
++unique_id : String
++due_back : DateField
++status : LOAN_STATUS
++book : Book[1]
++imprint : String
++borrower : User[1]
+--
++__str__ : String
+}
+
+Author "1..*" -- "1" Book
+'Book "1..*" -- "1" Author
+Book "0..*" -- "1..*" Genre
+Book "0..*" -- "1" Language
+BookInstance "1..*" - "1" Book : "      "
+
+@enduml
