@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Django tutorial polls main page</title>
+  </head>
+  <body>
+    <h2>This is the polls app index page.</h2>
+    <hr>
+    <div>
+      {% if questions_list %}
+        <ol>
+        {% for question in questions_list %}
+          <li>
+          <div>
+            {{ question.question_text }} PUBLISHED ON: {{ question.publication_date }}
+            {% if question.was_published_recently %}
+              *RECENT*
+            {% endif %}
+          </div>
+          <div>
+            <a href="{% url 'polls:details' pk=question.pk %}">details</a>
+            <a href="{% url 'polls:results' pk=question.pk %}">results</a>
+            <a href="{% url 'polls:delete_question' %}?pk={{ question.pk }}">delete</a>
+          </div>
+          </li>
+        {% endfor %}
+        </ol>
+      {% else %}
+        There are no questions.
+      {% endif %}
+    </div>
+    <div><a href="{% url 'polls:repopulate' %}">reset polls data</a></div>
+    <div><a href="{% url 'site_index:index' %}">Back to root index</a></div>
+  </body>
+</html>

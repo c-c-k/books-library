@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Django test site main index page</title>
+  </head>
+  <body>
+    <div>
+      <h1>{{ greet_msg }}</h1>
+    </div>
+    <hr>
+    <div>
+      <h2>Sections</h2>
+    </div>
+    <hr>
+    <ul>
+      {% for application in applications %}
+      <li><a href="{{application.url}}">{{application.description}}</a></li>
+      {% endfor %}
+    </ul>
+    <hr>
+  </body>
+</html>

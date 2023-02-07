@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Question details</title>
+  </head>
+  <body>
+    <div>
+      <form action="{% url 'polls:vote' question.pk %}" method="post" name="poll-vote-form" id="poll-vote-form">
+        {% csrf_token %}
+        <fieldset form="poll-vote-form">
+          <legend><h1>{{ question.question_text }}</h1></legend>
+          {% if error_message %}
+            <p><strong>{{ error_message }}</strong></p>
+          {% endif %}
+          {% for choice in question.choice_set.all %}
+            <div>
+              <input type="radio" id="choice-{{ choice.id }}" name="choice_id" value="{{ choice.id }}">
+              <label for="choice-{{ choice.id }}">{{ choice.choice_text }}</label>
+            </div>
+          {% endfor %}
+        </fieldset>
+      <input type="submit" value="Vote">
+      </form>
+    </div>
+    <div>
+      <a href="{% url 'polls:index' %}">Back to index</a>
+    </div>
+  </body>
+</html>

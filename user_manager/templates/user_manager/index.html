@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>user manager main page</title>
+  </head>
+  <body>
+    <div>
+      <p><a href="{% url "user_manager:register" %}">register</a></p>
+      <p><a href="{% url "user_manager:login" %}">login</a></p>
+      <p><a href="{% url "user_manager:logout" %}">logout</a></p>
+    </div>
+    <div>
+      <a href="{% url "site_index:index" %}">back to main index</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Results for question #{{ question.pk }}</title>
+  </head>
+  <body>
+  <div>
+    <div>
+      <h2>{{ question.question_text }}</h2>
+    </div>
+    <div>
+      <p>PUBLISHED ON: {{ question.publication_date }}</p>
+    </div>
+  </div>
+  <hr>
+  <div>
+    <table>
+      <tbody>
+      {% for choice in question.choice_set.all %}
+        <tr>
+          <td>{{ choice.choice_text }}</td>
+          <td>VOTES: {{ choice.vote_tally }}</td>
+          <td><sub>
+            <a
+                href="{% url 'polls:delete_choice' %}?pk={{ choice.pk }}&source={% url 'polls:results' question.pk %}"
+            >delete</a>
+          </sub></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <p><a href="{% url 'polls:details' pk=question.pk %}">Vote again</a></p>
+    <p><a href="{% url 'polls:index' %}">Back to questions index.</a></p>
+  </div>
+  </body>
+</html>
