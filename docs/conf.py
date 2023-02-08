@@ -11,7 +11,7 @@ from pathlib import Path
 project = 'BooksLibrary'
 copyright = '2022, CCK'
 author = 'CCK'
-release = '0.1.0-.1-docs'
+release = '0.3.0-polls_import'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

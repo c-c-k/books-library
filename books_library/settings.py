@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 from utils.secret import get_django_secret_token
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY_FILE = BASE_DIR / '.secret'
 SECRET_KEY = get_django_secret_token(SECRET_KEY_FILE)
-# SECRET_KEY = 'django-insecure-@qd5j^ds*me=o)2wxgw5pz4ume-=9p6vl1)x*g@n=)v10_xri)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalog.apps.MainConfig',
+    'site_index.apps.SiteIndexConfig',
+    'polls.apps.PollsConfig',
+    'user_manager.apps.UserManagerConfig',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +59,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'books_library.urls'
+LOGIN_REDIRECT_URL = reverse_lazy("site_index:index")
+LOGOUT_REDIRECT_URL = reverse_lazy("user_manager:index")
 
 TEMPLATES = [
     {
@@ -128,3 +134,26 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Custom installed application settings
+
+# -- application: site_index
+APPLICATION_URLS = [
+    {
+        "url": "admin/",
+        "description": "Django admin",
+    },
+    {
+        "url": "catalog/",
+        "description": "Books library catalog application",
+    },
+    {
+        "url": "polls/",
+        "description": "Django sample polls application",
+    },
+    {
+        "url": "user_manager/",
+        "description": "HyperSkill sample user management application",
+    },
+]
+
