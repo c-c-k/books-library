@@ -5,12 +5,17 @@ from django.db import models
 from django.shortcuts import reverse
 
 
-class LoanStatus(enum.Enum):
-    """An enum representing wherever a book instance is available or on loan."""
-    AVAILABLE = enum.auto
-    ON_LOAN = enum.auto
-    RESERVED = enum.auto
-    MAINTENANCE = enum.auto
+class LoanStatus(enum.IntEnum):
+    """An enum representing wherever a book instance's availability."""
+    AVAILABLE = enum.auto()
+    ON_LOAN = enum.auto()
+    RESERVED = enum.auto()
+    MAINTENANCE = enum.auto()
+
+    @staticmethod
+    def selection_map():
+        return tuple((str(status.value), str(status.name).title().replace('_', ' '))
+                     for status in LoanStatus)
 
 
 class User:
@@ -116,7 +121,10 @@ class BookCopy(models.Model):
         help_text='Enter the date by which the book should be returned '
                   'if it\'s on loan,'
                   ' leave blank if the book is not currently on loan.')
-    status = LoanStatus
+    status = models.SmallIntegerField(
+        null=False, blank=True, default=LoanStatus.MAINTENANCE.value,
+        choices=LoanStatus.selection_map(),
+        help_text='Book Availability')
     borrower = models.ForeignKey(
         User, blank=True, null=True, on_delete=models.DO_NOTHING,
         help_text='Enter the library user currently borrowing the book,'
