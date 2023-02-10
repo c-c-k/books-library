@@ -34,3 +34,14 @@ v0.2.0 Adjusted project to fulfill MDN Django tutorial part 2
 * Removed Template dirs for now.
 * Moved site root redirections to books_library/urls.
 * Emptied catalog/urls and catalog/views for now.
+
+v0.3.0 MDN tutorial part 3 (data model) & polls import
+------------------------------------------------------
+
+* Copied abstract data model from MDN tutorial.
+* Created Django models according to the abstract data model.
+* Applied migrations for the catalog data models.
+* Copied site index app from my Django scratchpad in the JBA repo.
+* Copied user manager app from my Django scratchpad in the JBA repo.
+* Copied polls app from my Django scratchpad in the JBA repo.
+* Copied some Django settings from my Django scratchpad in the JBA repo.
