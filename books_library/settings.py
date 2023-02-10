@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog.apps.MainConfig',
     'site_index.apps.SiteIndexConfig',
-    'polls.apps.PollsConfig',
-    'user_manager.apps.UserManagerConfig',
+    # 'polls.apps.PollsConfig',
+    # 'user_manager.apps.UserManagerConfig',
 ]
 
 MIDDLEWARE = [
@@ -139,21 +139,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # -- application: site_index
 APPLICATION_URLS = [
-    {
-        "url": "admin/",
-        "description": "Django admin",
-    },
+    # {
+    #     "url": "admin/",
+    #     "description": "Django admin",
+    # },
     {
         "url": "catalog/",
         "description": "Books library catalog application",
     },
-    {
-        "url": "polls/",
-        "description": "Django sample polls application",
-    },
-    {
-        "url": "user_manager/",
-        "description": "HyperSkill sample user management application",
-    },
+    # {
+    #     "url": "polls/",
+    #     "description": "Django sample polls application",
+    # },
+    # {
+    #     "url": "user_manager/",
+    #     "description": "HyperSkill sample user management application",
+    # },
 ]
 

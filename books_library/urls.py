@@ -21,7 +21,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='site_index/', permanent=True)),
     path('site_index/', include('site_index.urls')),
     path('catalog/', include('catalog.urls')),
-    path('polls/', include('polls.urls')),
-    path('user_manager/', include('user_manager.urls')),
+    # path('polls/', include('polls.urls')),
+    # path('user_manager/', include('user_manager.urls')),
     path('admin/', admin.site.urls),
 ]
