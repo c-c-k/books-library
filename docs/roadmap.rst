@@ -49,4 +49,4 @@ v0.3.0 MDN tutorial part 3 (data model) & polls import
 v0.4.0 MDN tutorial part 4 (admin site)
 ------------------------------------------------------
 
-*
+* Registered catalog models with admin site.
