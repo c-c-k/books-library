@@ -45,3 +45,8 @@ v0.3.0 MDN tutorial part 3 (data model) & polls import
 * Copied user manager app from my Django scratchpad in the JBA repo.
 * Copied polls app from my Django scratchpad in the JBA repo.
 * Copied some Django settings from my Django scratchpad in the JBA repo.
+
+v0.4.0 MDN tutorial part 4 (admin site)
+------------------------------------------------------
+
+*
