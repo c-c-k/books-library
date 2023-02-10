@@ -14,13 +14,10 @@ class LoanStatus(enum.IntEnum):
 
     @staticmethod
     def selection_map():
-        return tuple((str(status.value), str(status.name).title().replace('_', ' '))
-                     for status in LoanStatus)
-
-
-class User:
-    """Placeholder until a proper user is defined."""
-    pass
+        return tuple(
+            (str(status.value),
+             str(status.name).title().replace('_', ' '))
+            for status in LoanStatus)
 
 
 class Author(models.Model):
@@ -74,7 +71,8 @@ class Language(models.Model):
 
 class Book(models.Model):
     """A model representing the general information of a book."""
-    title = models.CharField(max_length=256, help_text='Enter the book\'s title.')
+    title = models.CharField(max_length=256,
+                             help_text='Enter the book\'s title.')
     author = models.ForeignKey(Author, on_delete=models.RESTRICT,
                                help_text='Choose the book\'s author.')
     summary = models.TextField(max_length=1024, blank=True, null=True,
@@ -85,13 +83,16 @@ class Book(models.Model):
                                       'see <a href="https://www.'
                                       'isbn-international.org/content/'
                                       'what-isbn">ISBN number</a>')
-    genre = models.ManyToManyField(Genre,
-                                   help_text='Choose the genres to which the book belongs.')
-    language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True,
+    genre = models.ManyToManyField(
+        Genre,
+        help_text='Choose the genres to which the book belongs.')
+    language = models.ForeignKey(Language, on_delete=models.SET_NULL,
+                                 null=True,
                                  help_text='Choose the book\'s language.')
 
     class Meta:
-        ordering = ['title', 'author', 'language', 'genre', 'ISBN', 'summary']
+        pass
+        # ordering = ['title', 'author', 'language', 'genre', 'ISBN', 'summary']
 
     def get_absolute_url(self):
         """Return the URL to access the general details of the book."""
@@ -125,20 +126,21 @@ class BookCopy(models.Model):
         null=False, blank=True, default=LoanStatus.MAINTENANCE.value,
         choices=LoanStatus.selection_map(),
         help_text='Book Availability')
-    borrower = models.ForeignKey(
-        User, blank=True, null=True, on_delete=models.DO_NOTHING,
-        help_text='Enter the library user currently borrowing the book,'
-                  ' leave blank if the book is not currently on loan.')
+    borrower = 'To be implemented'
+    # borrower = models.ForeignKey(
+    #     User, blank=True, null=True, on_delete=models.DO_NOTHING,
+    #     help_text='Enter the library user currently borrowing the book,'
+    #               ' leave blank if the book is not currently on loan.')
 
     class Meta:
-        ordering = ['unique_id', 'book', 'imprint', 'status', 'due_back', 'borrower']
+        ordering = ['id', 'book', 'imprint', 'status', 'due_back']
 
     def get_absolute_url(self):
         """Return the URL for the book copy's details."""
         return reverse('book_copy-details', args=[str(self.id)])
 
     def __str__(self):
-        """String representing the book copy's loan status and general information."""
+        """ String representing the book copy's loan status and information."""
         match self.status:
             case LoanStatus.AVAILABLE:
                 status = 'Available'
