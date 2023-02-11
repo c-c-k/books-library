@@ -1,23 +1,7 @@
-import enum
 import uuid
 
 from django.db import models
 from django.shortcuts import reverse
-
-
-class LoanStatus(enum.IntEnum):
-    """An enum representing wherever a book instance's availability."""
-    AVAILABLE = enum.auto()
-    ON_LOAN = enum.auto()
-    RESERVED = enum.auto()
-    MAINTENANCE = enum.auto()
-
-    @staticmethod
-    def selection_map():
-        return tuple(
-            (str(status.value),
-             str(status.name).title().replace('_', ' '))
-            for status in LoanStatus)
 
 
 class Author(models.Model):
@@ -59,7 +43,7 @@ class Book(models.Model):
         help_text='Enter the book\'s subtitle,'
                   'can be left empty.')
     author = models.ManyToManyField(
-        Author,
+        Author, through='BooksAuthors',
         help_text='Choose the book\'s author/s.')
     publication_year = models.PositiveSmallIntegerField(
         blank=False, null=False,
@@ -103,8 +87,25 @@ class Book(models.Model):
         )
 
 
+class BooksAuthors(models.Model):
+    """Auxiliary relation Books-Authors model.
+
+    This model is in place to prevent authors from being deleted
+    if they there are books referencing them.
+    """
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.RESTRICT)
+
+
 class BookCopy(models.Model):
     """A model representing a single loanable copy of a book."""
+    class LoanStatus(models.TextChoices):
+        """An enum representing wherever a book instance's availability."""
+        AVAILABLE = 'A'
+        ON_LOAN = 'L'
+        RESERVED = 'R'
+        MAINTENANCE = 'M'
+
     id = models.UUIDField(
         primary_key=True, default=uuid.uuid4,
         help_text='A unique id for the book copy across the whole library.')
@@ -116,9 +117,9 @@ class BookCopy(models.Model):
         help_text='Enter the date by which the book should be returned '
                   'if it\'s on loan,'
                   ' leave blank if the book is not currently on loan.')
-    status = models.SmallIntegerField(
-        null=False, blank=True, default=LoanStatus.MAINTENANCE.value,
-        choices=LoanStatus.selection_map(),
+    status = models.CharField(
+        max_length=1, null=False, blank=True,
+        choices=LoanStatus.choices, default=LoanStatus.MAINTENANCE,
         help_text='Book Availability')
     borrower = 'To be implemented'
 
@@ -138,14 +139,14 @@ class BookCopy(models.Model):
     def __str__(self):
         """ String representing the book copy's loan status and information."""
         match self.status:
-            case LoanStatus.AVAILABLE:
+            case self.LoanStatus.AVAILABLE:
                 status = 'Available'
-            case LoanStatus.ON_LOAN:
+            case self.LoanStatus.ON_LOAN:
                 status = (f'On loan to {self.borrower!s},'
                           f' due back on {self.due_back!s}')
-            case LoanStatus.RESERVED:
+            case self.LoanStatus.RESERVED:
                 status = f'Reserved by {self.borrower!s}'
-            case LoanStatus.MAINTENANCE:
+            case self.LoanStatus.MAINTENANCE:
                 status = (f'undergoing maintenance {self.borrower!s},'
                           f' due back on {self.due_back!s}')
             case _:

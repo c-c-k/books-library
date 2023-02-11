@@ -61,6 +61,13 @@ v0.3.1 MDN tutorial data model adjustment to 7k books dataset
 * Removed Author.date_of_death .
 * Removed BookCopy.imprint .
 
+v0.3.2 MDN tutorial extra data model adjustments
+-------------------------------------------------------------
+
+* Added auxiliary BooksAuthors table to prevent authors with books from being deleted.
+* Moved LoanStatus into BookCopy
+* Reformatted LoanStatus to use Django's TextChoices.
+
 v0.4.0 MDN tutorial part 4 (admin site)
 ------------------------------------------------------
 
