@@ -6,6 +6,9 @@
 # Development database
 *.sqlite3
 
+# Temporary files
+_*.tmp
+
 #
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
