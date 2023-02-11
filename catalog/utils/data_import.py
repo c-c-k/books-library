@@ -81,13 +81,17 @@ def import_7k_books():
             yield from csv_dict_reader
 
     def create_book_from_dataset_data(_book_data_from_dataset: dict) -> Book:
+        categories_name = (
+            _book_data_from_dataset['categories']
+            if _book_data_from_dataset['categories']
+            else Categories.UNKNOWN
+        )
         return Book(
             isbn=_book_data_from_dataset['isbn13'],
             title=_book_data_from_dataset['title'],
             subtitle=_book_data_from_dataset['subtitle'],
             publication_year=int(_book_data_from_dataset['publication_year']),
-            categories=Categories.objects.get_or_create(
-                name=_book_data_from_dataset['categories']),
+            categories=Categories.objects.get_or_create(name=categories_name),
             thumbnail=_book_data_from_dataset['thumbnail'],
             summary=_book_data_from_dataset['summary'],
             page_count=int(_book_data_from_dataset['page_count']),

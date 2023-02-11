@@ -17,6 +17,7 @@ class Author(models.Model):
 
 class Categories(models.Model):
     """A model representing a book genre."""
+    UNKNOWN = 'Unknown'
     name = models.CharField(
         null=False, blank=False, max_length=64,
         help_text='Enter the name of the genre '
@@ -50,6 +51,7 @@ class Book(models.Model):
         help_text='Enter the year of the book\'s publication.')
     categories = models.ForeignKey(
         Categories, on_delete=models.RESTRICT,
+        blank=False, null=False, default=Categories.UNKNOWN,
         help_text='Choose the genres to which the book belongs.')
     thumbnail = models.URLField(
         max_length=256, blank=True, null=True,
@@ -82,9 +84,22 @@ class Book(models.Model):
 
     def __str__(self):
         """String representing the book's general information."""
-        return (
-            f'{self.title} by {self.author!s},'
-        )
+        match self.authors.all():
+            case []:
+                authors_string = 'authors unknown'
+            case [single_author]:
+                authors_string = str(single_author)
+            case [author_1, author_2]:
+                authors_string = str(author_1) + ' and ' + str(author_2)
+            case [*multiple_authors]:
+                authors_string = ', '.join(
+                    str(author) for author in multiple_authors[:-1])
+                authors_string = (authors_string + ' and '
+                                  + str(multiple_authors[-1]))
+            case _:
+                raise Exception('Unexpected error while trying to generate '
+                                '__str__ for Book instance.')
+        return f'{self.title} by {authors_string}'
 
 
 class BooksAuthors(models.Model):
