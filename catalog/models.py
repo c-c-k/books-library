@@ -11,7 +11,7 @@ class Author(models.Model):
         help_text='Enter the name of the book author.')
 
     def __str__(self):
-        """String representing the author."""
+        """String representing the authors."""
         return self.name
 
 
@@ -42,7 +42,7 @@ class Book(models.Model):
         max_length=256, blank=True, null=True,
         help_text='Enter the book\'s subtitle,'
                   'can be left empty.')
-    author = models.ManyToManyField(
+    authors = models.ManyToManyField(
         Author, through='BooksAuthors',
         help_text='Choose the book\'s author/s.')
     publication_year = models.PositiveSmallIntegerField(
@@ -74,7 +74,7 @@ class Book(models.Model):
 
     class Meta:
         pass
-        # ordering = ['title', 'author', 'genre', 'ISBN', 'summary']
+        # ordering = ['title', 'authors', 'genre', 'ISBN', 'summary']
 
     def get_absolute_url(self):
         """Return the URL to access the general details of the book."""

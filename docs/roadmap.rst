@@ -84,6 +84,11 @@ v0.3.4 MDN tutorial more data model fixes
 * Changed Genre to Categories.
 * Changed Book-Categories relation to be many to one.
 
+v0.3.5 MDN tutorial more data model fixes
+-----------------------------------------
+
+* Changed Book.author to Book.authors .
+
 v0.4.0 MDN tutorial part 4 (admin site)
 ------------------------------------------------------
 
