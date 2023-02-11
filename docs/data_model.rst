@@ -6,16 +6,27 @@ Specification
 
 Objects:
     * Books
-        * Author
-        * Genre
         * ISBN
-        * Language
+        * title
+        * subtitle
+        * author
+        * publication_year
+        * genre
+        * thumbnail
+        * summary
+        * page_count
+        * average_rating
+        * ratings_count
     * Book instances
-        * Availability
-        * Book
+        * unique_id
+        * due_back
+        * status
+        * book
+        * borrower
     * Authors
-    * Languages
+        * name
     * Genres
+        * name
 
 Logic
 -----

@@ -46,6 +46,21 @@ v0.3.0 MDN tutorial part 3 (data model) & polls import
 * Copied polls app from my Django scratchpad in the JBA repo.
 * Copied some Django settings from my Django scratchpad in the JBA repo.
 
+v0.3.1 MDN tutorial data model adjustment to 7k books dataset
+-------------------------------------------------------------
+
+* Changed Book.author to Book.authors (ManyToManyField).
+* Added Book.subtitle (CharField).
+* Added Book.thumbnail (URLField).
+* Added Book.publication_year (SmallPositiveIntegerField).
+* Added Book.average_rating (DecimalField).
+* Added Book.ratings_count (PositiveIntegerField).
+* Added Book.num_pages (SmallPositiveIntegerField).
+* Removed Book.Language .
+* Removed Author.date_of_birth .
+* Removed Author.date_of_death .
+* Removed BookCopy.imprint .
+
 v0.4.0 MDN tutorial part 4 (admin site)
 ------------------------------------------------------
 

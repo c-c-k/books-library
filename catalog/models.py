@@ -22,19 +22,9 @@ class LoanStatus(enum.IntEnum):
 
 class Author(models.Model):
     """A model representing a book Author."""
-    name = models.CharField(max_length=64,
-                            help_text='Enter the name of the book author.')
-    date_of_birth = models.DateField(
-        blank=True, null=True,
-        help_text='Enter the date of the book authors birth,'
-                  ' leave blank if unknown.')
-    date_of_death = models.DateField(
-        blank=True, null=True,
-        help_text='Enter the date of the book authors death,'
-                  ' leave blank if unknown or if author is still alive.')
-
-    class Meta:
-        ordering = ['name', 'date_of_birth', 'date_of_birth']
+    name = models.CharField(
+        null=False, blank=False, max_length=64,
+        help_text='Enter the name of the book author.')
 
     def __str__(self):
         """String representing the author."""
@@ -43,56 +33,64 @@ class Author(models.Model):
 
 class Genre(models.Model):
     """A model representing a book genre."""
-    name = models.CharField(max_length=32,
-                            help_text='Enter the name of the genre (e.g. '
-                                      'fiction, historical, etc..).')
-
-    class Meta:
-        ordering = ['name']
+    name = models.CharField(
+        null=False, blank=False, max_length=64,
+        help_text='Enter the name of the genre '
+                  '(e.g. fiction, historical, etc..).')
 
     def __str__(self):
         """String representing the genre."""
         return self.name
 
 
-class Language(models.Model):
-    """A model representing a book genre."""
-    name = models.CharField(max_length=32,
-                            help_text='Enter the name of the language (e.g.'
-                                      'english, french, etc..).')
-
-    class Meta:
-        ordering = ['name']
-
-    def __str__(self):
-        """String representing the language."""
-        return self.name
-
-
 class Book(models.Model):
     """A model representing the general information of a book."""
-    title = models.CharField(max_length=256,
-                             help_text='Enter the book\'s title.')
-    author = models.ForeignKey(Author, on_delete=models.RESTRICT,
-                               help_text='Choose the book\'s author.')
-    summary = models.TextField(max_length=1024, blank=True, null=True,
-                               help_text='Enter a short summary of the book,'
-                                         'can be left empty.')
-    ISBN = models.CharField('ISBN', max_length=13, unique=True,
-                            help_text='Enter the book\'s ISBN.'
-                                      'see <a href="https://www.'
-                                      'isbn-international.org/content/'
-                                      'what-isbn">ISBN number</a>')
+    ISBN = models.CharField(
+        'ISBN', max_length=13, unique=True,
+        help_text='Enter the book\'s 13 digit ISBN.'
+                  'see <a href="'
+                  'https://www.isbn-international.org/content/what-isbn'
+                  '">ISBN number</a> for details.')
+    title = models.CharField(
+        max_length=256, blank=False, null=False,
+        help_text='Enter the book\'s title.')
+    subtitle = models.CharField(
+        max_length=256, blank=True, null=True,
+        help_text='Enter the book\'s subtitle,'
+                  'can be left empty.')
+    author = models.ManyToManyField(
+        Author,
+        help_text='Choose the book\'s author/s.')
+    publication_year = models.PositiveSmallIntegerField(
+        blank=False, null=False,
+        help_text='Enter the year of the book\'s publication.')
     genre = models.ManyToManyField(
         Genre,
         help_text='Choose the genres to which the book belongs.')
-    language = models.ForeignKey(Language, on_delete=models.SET_NULL,
-                                 null=True,
-                                 help_text='Choose the book\'s language.')
+    thumbnail = models.URLField(
+        max_length=256, blank=True, null=True,
+        help_text='Enter a url for the books thumbnail picture,'
+                  'can be left blank.')
+    summary = models.TextField(
+        max_length=1024, blank=True, null=True,
+        help_text='Enter a short summary of the book,'
+                  'can be left empty.')
+    page_count = models.PositiveSmallIntegerField(
+        blank=False, null=False,
+        help_text='Enter the number of pages in the book.')
+    average_rating = models.DecimalField(
+        max_digits=4, decimal_places=2,
+        blank=False, null=False, default=5,
+        help_text='Enter a previously known user rating,'
+                  'can be left blank.')
+    ratings_count = models.PositiveIntegerField(
+        blank=False, null=False, default=0,
+        help_text='Enter a previously known count of user ratings,'
+                  'can be left blank.')
 
     class Meta:
         pass
-        # ordering = ['title', 'author', 'language', 'genre', 'ISBN', 'summary']
+        # ordering = ['title', 'author', 'genre', 'ISBN', 'summary']
 
     def get_absolute_url(self):
         """Return the URL to access the general details of the book."""
@@ -102,7 +100,6 @@ class Book(models.Model):
         """String representing the book's general information."""
         return (
             f'{self.title} by {self.author!s},'
-            f' language: {self.language!s}, ISBN: {self.ISBN}'
         )
 
 
@@ -114,9 +111,6 @@ class BookCopy(models.Model):
     book = models.ForeignKey(
         Book, on_delete=models.RESTRICT,
         help_text='Choose the book copy\'s general information entry.')
-    imprint = models.CharField(
-        max_length=264, help_text='Enter the books copy\'s imprint '
-                                  '(specific release/version info).')
     due_back = models.DateField(
         blank=True, null=True,
         help_text='Enter the date by which the book should be returned '
@@ -127,13 +121,15 @@ class BookCopy(models.Model):
         choices=LoanStatus.selection_map(),
         help_text='Book Availability')
     borrower = 'To be implemented'
+
     # borrower = models.ForeignKey(
     #     User, blank=True, null=True, on_delete=models.DO_NOTHING,
     #     help_text='Enter the library user currently borrowing the book,'
     #               ' leave blank if the book is not currently on loan.')
 
     class Meta:
-        ordering = ['id', 'book', 'imprint', 'status', 'due_back']
+        pass
+        # ordering = ['id', 'book', 'imprint', 'status', 'due_back']
 
     def get_absolute_url(self):
         """Return the URL for the book copy's details."""
