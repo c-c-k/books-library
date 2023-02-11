@@ -11,7 +11,7 @@ Objects:
         * subtitle
         * author
         * publication_year
-        * genre
+        * categories
         * thumbnail
         * summary
         * page_count
@@ -25,7 +25,7 @@ Objects:
         * borrower
     * Authors
         * name
-    * Genres
+    * Categories
         * name
 
 Logic

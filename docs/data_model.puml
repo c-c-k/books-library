@@ -7,7 +7,7 @@ class Book {
 +subtitle : CharField
 +author : Author[1..*]
 *publication_year : PositiveSmallIntegerField
-+genre : Genre[1..*]
++categories : Categories[1]
 +thumbnail : UrlField
 +summary : CharField
 +page_count : PositiveSmallIntegerField
@@ -24,7 +24,7 @@ class Author {
 +__str__ : String
 }
 
-class Genre {
+class Categories {
 +name : CharField
 --
 +__str__ : String
@@ -41,7 +41,7 @@ class BookInstance {
 }
 
 Book "1..*" -- "1..*" Author
-Book "0..*" -- "1..*" Genre
+Book "0..*" -- "1" Categories
 BookInstance "1..*" - "1" Book : "      "
 
 @enduml

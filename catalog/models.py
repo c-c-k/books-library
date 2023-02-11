@@ -15,7 +15,7 @@ class Author(models.Model):
         return self.name
 
 
-class Genre(models.Model):
+class Categories(models.Model):
     """A model representing a book genre."""
     name = models.CharField(
         null=False, blank=False, max_length=64,
@@ -48,8 +48,8 @@ class Book(models.Model):
     publication_year = models.PositiveSmallIntegerField(
         blank=False, null=False,
         help_text='Enter the year of the book\'s publication.')
-    genre = models.ManyToManyField(
-        Genre,
+    categories = models.ForeignKey(
+        Categories, on_delete=models.RESTRICT,
         help_text='Choose the genres to which the book belongs.')
     thumbnail = models.URLField(
         max_length=256, blank=True, null=True,

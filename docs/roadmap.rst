@@ -78,6 +78,12 @@ v0.3.3 MDN tutorial more data model fixes
 
 * Changed Book.ISBN to Book.isbn .
 
+v0.3.4 MDN tutorial more data model fixes
+-----------------------------------------
+
+* Changed Genre to Categories.
+* Changed Book-Categories relation to be many to one.
+
 v0.4.0 MDN tutorial part 4 (admin site)
 ------------------------------------------------------
 
