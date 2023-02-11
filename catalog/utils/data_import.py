@@ -1,11 +1,11 @@
 import csv
-import datetime
+# import datetime
 from decimal import Decimal
 from pathlib import Path
 from pprint import pprint
-from random import randint
+# from random import randint
 
-from ..models import Author, Categories, Book, BookCopy
+from ..models import Author, Categories, Book  # , BookCopy
 
 DATASET_ROOT = Path(__file__).parent / 'datasets/'
 DATASET_7K_BOOKS = DATASET_ROOT / 'books_7k.csv'
@@ -32,15 +32,18 @@ def get_sample_entry_from_csv(csv_file: Path, print_=False, temp_file=True):
 
 
 def get_field_values_from_csv(
-        csv_file: Path, field_name: str, print_=False, temp_file=True):
+        csv_file: Path, field_name: str,
+        print_=False, temp_file=True, return_values=False
+) -> set | None:
     """Get all values for a field to use as reference while writing importer
     code.
 
+    :param return_values: Return values to caller.
     :param csv_file: The csv file to get the reference from.
     :param field_name: The name of the field for which to get the values.
     :param print_: Set to True to output the sample to the console.
     :param temp_file: Set to False in order to avoid creating a sample file.
-    :return: None.
+    :return: values if return_values is true else None
     """
     with open(csv_file, 'r', newline='') as csv_dataset:
         csv_dict = csv.DictReader(csv_dataset)
@@ -52,7 +55,7 @@ def get_field_values_from_csv(
         with open(temp_file_path, 'w') as sample_file:
             print(*values, file=sample_file, sep='\n')
             print(f'Exported to {sample_file.name}')
-
+    return values if return_values else None
 
 
 def import_7k_books():
@@ -67,6 +70,11 @@ def import_7k_books():
             dylanjcastillo/7k-books-with-metadata
     """
 
+    def clear_prev_data():
+        Book.objects.all().delete()
+        Author.objects.all().delete()
+        Categories.objects.all().delete()
+
     def books_data_from_dataset() -> dict:
         with open(DATASET_7K_BOOKS, 'r', newline='') as data_source:
             csv_dict_reader = csv.DictReader(data_source)
@@ -78,6 +86,8 @@ def import_7k_books():
             title=_book_data_from_dataset['title'],
             subtitle=_book_data_from_dataset['subtitle'],
             publication_year=int(_book_data_from_dataset['publication_year']),
+            categories=Categories.objects.get_or_create(
+                name=_book_data_from_dataset['categories']),
             thumbnail=_book_data_from_dataset['thumbnail'],
             summary=_book_data_from_dataset['summary'],
             page_count=int(_book_data_from_dataset['page_count']),
@@ -85,36 +95,16 @@ def import_7k_books():
             ratings_count=int(_book_data_from_dataset['ratings_count']),
         )
 
+    def set_authors(_book: Book, _book_data_from_dataset: dict):
+        author_names = _book_data_from_dataset['authors'].split(';').strip()
+        authors = list(
+            Author.objects.get_or_create(name=author_name)
+            for author_name
+            in author_names
+        )
+        _book.authors.add(authors, through_defaults=None)
+
+    clear_prev_data()
     for book_data_from_dataset in books_data_from_dataset():
         book = create_book_from_dataset_data(book_data_from_dataset)
-
-    def is_invalid_entry(entry: dict):
-        name = entry['name']
-        return (',' in name) or (';' in name)
-
-    def filter_book_entry(source_entry_: dict) -> dict:
-        return {
-            'name': source_entry_['bibliography.title'],
-            'author': source_entry_['bibliography.author.name'].replace(',',
-                                                                        ' '),
-            'publication_year': source_entry_['bibliography.publication.year'],
-        }
-
-    with open(BOOK_SOURCE, 'r', newline='') as source:
-        with open(BOOK_FILTERED, 'w', newline='') as filtered:
-            csv_dict_reader = csv.DictReader(source)
-            csv_dict_writer = csv.DictWriter(
-                f=filtered,
-                fieldnames=(
-                'id', 'name', 'author', 'publication_year', 'type'),
-            )
-            csv_dict_writer.writeheader()
-            for id_ in range(1, 101):
-                source_entry = next(csv_dict_reader)
-                filtered_entry = filter_book_entry(source_entry)
-                while is_invalid_entry(filtered_entry):
-                    source_entry = next(csv_dict_reader)
-                    filtered_entry = filter_book_entry(source_entry)
-                filtered_entry['id'] = str(id_)
-                filtered_entry['type'] = str(randint(1, 3))
-                csv_dict_writer.writerow(filtered_entry)
+        set_authors(book, book_data_from_dataset)
