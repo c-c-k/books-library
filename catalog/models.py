@@ -51,7 +51,7 @@ class Book(models.Model):
         help_text='Enter the year of the book\'s publication.')
     categories = models.ForeignKey(
         Categories, on_delete=models.RESTRICT,
-        blank=False, null=False, default=Categories.UNKNOWN,
+        blank=False, null=False,
         help_text='Choose the genres to which the book belongs.')
     thumbnail = models.URLField(
         max_length=256, blank=True, null=True,
