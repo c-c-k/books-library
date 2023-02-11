@@ -2,7 +2,7 @@
 !theme crt-green
 
 class Book {
-+ISBN : CharField
++isbn : CharField
 +title : CharField
 +subtitle : CharField
 +author : Author[1..*]

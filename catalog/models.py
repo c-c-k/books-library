@@ -29,7 +29,7 @@ class Genre(models.Model):
 
 class Book(models.Model):
     """A model representing the general information of a book."""
-    ISBN = models.CharField(
+    isbn = models.CharField(
         'ISBN', max_length=13, unique=True,
         help_text='Enter the book\'s 13 digit ISBN.'
                   'see <a href="'

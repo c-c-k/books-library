@@ -73,6 +73,11 @@ v0.3.2 MDN tutorial extra data model adjustments
 * Moved LoanStatus into BookCopy
 * Reformatted LoanStatus to use Django's TextChoices.
 
+v0.3.3 MDN tutorial more data model fixes
+-----------------------------------------
+
+* Changed Book.ISBN to Book.isbn .
+
 v0.4.0 MDN tutorial part 4 (admin site)
 ------------------------------------------------------
 
