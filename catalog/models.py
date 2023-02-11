@@ -31,7 +31,7 @@ class Categories(models.Model):
 class Book(models.Model):
     """A model representing the general information of a book."""
     isbn = models.CharField(
-        'ISBN', max_length=13, unique=True,
+        'ISBN', max_length=13,
         help_text='Enter the book\'s 13 digit ISBN.'
                   'see <a href="'
                   'https://www.isbn-international.org/content/what-isbn'
@@ -62,7 +62,7 @@ class Book(models.Model):
         help_text='Enter a short summary of the book,'
                   'can be left empty.')
     page_count = models.PositiveSmallIntegerField(
-        blank=False, null=False,
+        blank=False, null=False, default=0,
         help_text='Enter the number of pages in the book.')
     average_rating = models.DecimalField(
         max_digits=4, decimal_places=2,
@@ -84,22 +84,26 @@ class Book(models.Model):
 
     def __str__(self):
         """String representing the book's general information."""
-        match self.authors.all():
-            case []:
-                authors_string = 'authors unknown'
-            case [single_author]:
-                authors_string = str(single_author)
-            case [author_1, author_2]:
-                authors_string = str(author_1) + ' and ' + str(author_2)
-            case [*multiple_authors]:
-                authors_string = ', '.join(
-                    str(author) for author in multiple_authors[:-1])
-                authors_string = (authors_string + ' and '
-                                  + str(multiple_authors[-1]))
-            case _:
-                raise Exception('Unexpected error while trying to generate '
-                                '__str__ for Book instance.')
-        return f'{self.title} by {authors_string}'
+        return f'{self.title}'
+        # match self.authors:
+        #     case []:
+        #         authors_string = 'authors unknown'
+        #     case [single_author]:
+        #         authors_string = str(single_author)
+        #     case [author_1, author_2]:
+        #         authors_string = str(author_1) + ' and ' + str(author_2)
+        #     case [*multiple_authors]:
+        #         authors_string = ', '.join(
+        #             str(author) for author in multiple_authors[:-1])
+        #         authors_string = (authors_string + ' and '
+        #                           + str(multiple_authors[-1]))
+        #     case _:
+        #         raise Exception('Unexpected error while trying to generate '
+        #                         '__str__ for Book instance.')
+        # return f'{self.title} by {authors_string}'
+
+    def __repr__(self):
+        return f'<{self.__class__.__name__}>: {self.title}'
 
 
 class BooksAuthors(models.Model):
