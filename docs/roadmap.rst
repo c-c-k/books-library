@@ -23,6 +23,11 @@ v0.1.0-3 Switch to following MDN "Local Library" Django tutorial
 
 * Added note about the MDN tutorial to project README.md and to docs/index.rst .
 
+v0.1.1-3 fix reStructuredText markup
+------------------------------------
+
+* Fixed link markup in index.rst to properly reStructuredText hyperlink markup.
+
 v0.2.0 Adjusted project to fulfill MDN Django tutorial part 2
 -------------------------------------------------------------
 
